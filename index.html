@@ -35,34 +35,6 @@
             text-align: center;
             color: linear-gradient(90deg, rgba(0,36,14,1) 0%, rgba(2,21,34,1) 21%, rgba(68,63,5,1) 43%, rgba(13,7,97,1) 62%, rgba(97,9,121,1) 81%, rgba(255,0,48,1) 100%);
         }
-        div#ily{
-
-            position:absolute;
-            padding:0;
-            margin:auto;
-            vertical-align: middle;
-
-            top: 50%;
-            left: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-
-            width: 100%;
-            height: 100%;
-
-
-            background: #e5b1b8;
-            display: none;
-        }
-        div#ily h1{
-
-            color: linear-gradient(90deg, rgba(199,36,47,1) 0%, rgba(95,255,0,1) 100%);
-            width: 80%;
-            text-align: center;
-            margin: auto;
-            padding: 8vh 0;
-            font-size: 100px;
-        }
 
         div#footer{
             position:fixed; bottom:0; right:50%;
@@ -90,15 +62,7 @@
     <div class="container"></div>
 
 
-    <div id="ily">
-        <h1>
-            I love you baby 😘
-                                <hr style="color: lightgreen">
-            Have a great day ! 😇
-                                <hr style="color: lightgreen">
-            Take care of yourself 💚
-        </h1>
-    </div>
+
 
     <div id="footer">
         <hr>
@@ -130,8 +94,9 @@
 
                 ReactDOM.render(<div>
                     <Countdown name="Spruha's birthday" when="27-05-2022:0700"/>
-                    <Countdown name="OS Assignment" when="20-03-2022:2100"/>
                     <Countdown name="IEVM Numerical Program" when="22-03-2022:1135"/>
+                    <Countdown name="DBMS Assignment 2" when="27-03-2022:1900"/>
+					<Countdown name="DBMS End Term Exam" when="05-04-2022:1900"/>
 
                             </div>, document.getElementsByClassName('container')[0]);
 
@@ -195,20 +160,6 @@
             return dDisplay + hDisplay + mDisplay + sDisplay;
         }
 
-        setTimeout(async function () {
-            document.getElementById('ily').style.zIndex = "5";
-            document.getElementById('ily').style.display = "block";
-            document.getElementById("ily").style.opacity = "0";
-            await sleep(400);
-            document.getElementById("ily").style.opacity = "0.25";
-            await sleep(400);
-            document.getElementById("ily").style.opacity = "0.5";
-            await sleep(400);
-            document.getElementById("ily").style.opacity = "0.8";
-            await sleep(400);
-            document.getElementById("ily").style.opacity = "1";
-
-        }, 6000);
 
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
