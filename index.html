@@ -1,186 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <title>To Do Countdown</title>
-    <script src="js/build/react.min.js"></script>
-    <script src="js/build/react-dom.min.js"></script>
-    <script src="js/build/browser.min.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <title>To Do Countdown</title>
+        <script src="js/build/react.min.js"></script>
+        <script src="js/build/react-dom.min.js"></script>
+        <script src="js/build/browser.min.js"></script>
 
-    <script src="https://kit.fontawesome.com/d3fd9d5f94.js" crossorigin="anonymous"></script>
-    <link rel="icon" href="logo.jpg">
-    <meta name="theme-color" content="#910200">
+        <script src="https://kit.fontawesome.com/d3fd9d5f94.js" crossorigin="anonymous"></script>
+        <link rel="icon" href="logo.jpg">
+        <meta name="theme-color" content="#910200">
 
-    <style>
-        body {
-            background-color: #e4d8eb;
-        }
-        
-        .task-name {
-            color: red;
-            text-align: center;
-            font-size: 75px;
-            font-family: Dubai;
-            margin-bottom: -10px;
-        }
-        
-        .timer {
-            font-size: 20px;
-            color: #548763;
-            text-align: center;
-            font-family: monospace;
-        }
-        
-        .counter {
-            font-family: Tahoma;
-            font-size: xx-large;
-            text-align: center;
-            color: linear-gradient(90deg, rgba(0, 36, 14, 1) 0%, rgba(2, 21, 34, 1) 21%, rgba(68, 63, 5, 1) 43%, rgba(13, 7, 97, 1) 62%, rgba(97, 9, 121, 1) 81%, rgba(255, 0, 48, 1) 100%);
-        }
-        
-        div#footer {
-            position: relative;
-            bottom: 0;
-            right: 50%;
-            margin: 10vmin auto -20px auto;
-            transform: translateX(50%);
-            font-family: monospace;
-            font-size: 1.4em;
-            text-align: center;
-            padding: 0;
-        }
-        
-        div#footer h6:not(:last-child) {
-            margin: 2px auto;
-            font-weight: 100;
-        }
-        
-        div#footer hr {
-            height: 1px;
-            width: 100%;
-            border: 0;
-            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-        }
-        
-        h6#copyright {
-            text-align: right;
-            font-family: "Times New Roman";
-            font-weight: 400;
-            margin-top: 5px;
-            margin-right: 8px;
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="container"></div>
-
-
-    <div id="footer">
-        <hr>
-        <h6>Made with <img style="width: 25px; height: 25px; margin: auto auto -4px -4px" src="js.png"></h6>
-        <h6>Hosted with <i style="color: red" class="fa fa-heart" aria-hidden="true"></i> on <i class="fa fa-github" aria-hidden="true"></i></h6>
-        <hr style="background-image: linear-gradient(90deg, rgba(212,154,190,0) 0%, rgba(234,86,126,0.21612394957983194) 27%, rgba(242,62,103,0.27494747899159666) 46%, rgba(253,29,71,0.13209033613445376) 73%, rgba(181,0,34,1) 99%)">
-        <h6 id="copyright"> <i class="fa fa-copyright" aria-hidden="true"></i> Prashik Deshpande</h6>
-
-    </div>
-
-
-    <script type="text/babel">
-
-        var Countdown = React.createClass({ render: function () { return (
-        <div>
-            <div className="task-name">{this.props.name}</div>
-            <div className="counter"></div>
-            <div className="timer">{this.props.when}</div>
-        </div>); } }); ReactDOM.render(
-        <div>
-            <Countdown name="Spruha's birthday" when="27-05-2023:0001" />
-            <Countdown name="Topology End Semester Exam" when="18-04-2023:1400" />
-            <Countdown name="Advanced Complex Analysis End Semester Exam" when="20-04-2023:1400" />
-            <Countdown name="Computer Networks End Semester Exam" when="28-04-2023:1400" />
-            <Countdown name="Project II Viva Report Submission" when="01-05-2023:1630" />
-
-
-
-
-        </div>, document.getElementsByClassName('container')[0]);
-
-
-
-
-
-
-
-    </script>
-
-    <script>
-        window.onload = updateuntil;
-
-        function updateuntil() {
-            var collection = document.querySelectorAll('div.timer');
-            console.log(collection.length);
-            for (let i = 0; i < collection.length; i++) {
-                collection[i].innerHTML = "Until " + collection[i].innerHTML;
-
+        <style>
+            body {
+                background-color: #e4d8eb;
             }
-            setInterval(updateCounters, 1200);
-        }
 
-
-
-        function updateCounters() {
-
-            var collection = document.querySelectorAll('div.timer');
-
-            for (let i = 0; i < collection.length; i++) {
-                var main = collection[i].parentElement;
-                var timestrings = collection[i].innerHTML.substr(6).split(':');
-                //console.log(timestrings);
-
-                var count = main.children[1];
-                if (count.innerHTML == "Event passed") {
-                    continue;
-                }
-                var ymd = timestrings[0].split('-').reverse().join('-');
-
-                var hm = timestrings[1][0] + timestrings[1][1] + ':' + timestrings[1][2] + timestrings[1][3] + ':00';
-
-                var until = new Date(ymd + "T" + hm + "+05:30").getTime();
-                var today = Date.now();
-                var seconds = Math.floor((until - today) / 1000);
-                //console.log(seconds, main);
-                if (seconds < 0) {
-                    count.innerHTML = "Event passed";
-                    continue;
-                }
-                // console.log(seconds);
-                count.innerHTML = secondsToDhms(seconds);
+            .task-name {
+                color: red;
+                text-align: center;
+                font-size: 75px;
+                font-family: Dubai;
+                margin-bottom: -10px;
             }
-        }
 
-        function secondsToDhms(seconds) {
-            seconds = Number(seconds);
-            var d = Math.floor(seconds / (3600 * 24));
-            var h = Math.floor(seconds % (3600 * 24) / 3600);
-            var m = Math.floor(seconds % 3600 / 60);
-            var s = Math.floor(seconds % 60);
+            .timer {
+                font-size: 20px;
+                color: #548763;
+                text-align: center;
+                font-family: monospace;
+            }
 
-            var dDisplay = d > 0 ? d + (d == 1 ? "d " : "d ") : "";
-            var hDisplay = h > 0 ? h + (h == 1 ? "h " : "h ") : "";
-            var mDisplay = m > 0 ? m + (m == 1 ? "m " : "m ") : "";
-            var sDisplay = s > 0 ? s + (s == 1 ? "s " : "s ") : "";
-            return dDisplay + hDisplay + mDisplay + sDisplay;
-        }
+            .counter {
+                font-family: Tahoma;
+                font-size: xx-large;
+                text-align: center;
+                color: linear-gradient(90deg, rgba(0, 36, 14, 1) 0%, rgba(2, 21, 34, 1) 21%, rgba(68, 63, 5, 1) 43%, rgba(13, 7, 97, 1) 62%, rgba(97, 9, 121, 1) 81%, rgba(255, 0, 48, 1) 100%);
+            }
+
+            div#footer {
+                position: relative;
+                bottom: 0;
+                right: 50%;
+                margin: 10vmin auto -20px auto;
+                transform: translateX(50%);
+                font-family: monospace;
+                font-size: 1.4em;
+                text-align: center;
+                padding: 0;
+            }
+
+            div#footer h6:not(:last-child) {
+                margin: 2px auto;
+                font-weight: 100;
+            }
+
+            div#footer hr {
+                height: 1px;
+                width: 100%;
+                border: 0;
+                background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+            }
+
+            h6#copyright {
+                text-align: right;
+                font-family: "Times New Roman";
+                font-weight: 400;
+                margin-top: 5px;
+                margin-right: 8px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="container"></div>
 
 
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-    </script>
+        <div id="footer">
+            <hr>
+            <h6>Made with <img style="width: 25px; height: 25px; margin: auto auto -4px -4px" src="js.png"></h6>
+            <h6>Hosted with <i style="color: red" class="fa fa-heart" aria-hidden="true"></i> on <i class="fa fa-github"
+                    aria-hidden="true"></i></h6>
+            <hr
+                style="background-image: linear-gradient(90deg, rgba(212,154,190,0) 0%, rgba(234,86,126,0.21612394957983194) 27%, rgba(242,62,103,0.27494747899159666) 46%, rgba(253,29,71,0.13209033613445376) 73%, rgba(181,0,34,1) 99%)">
+            <h6 id="copyright"> <i class="fa fa-copyright" aria-hidden="true"></i> Prashik Deshpande</h6>
 
-</body>
+        </div>
+
+
+        <script type="text/babel">
+
+            var Countdown = React.createClass({
+                render: function () {
+                    return (
+                        <div>
+                            <div className="task-name">{this.props.name}</div>
+                            <div className="counter"></div>
+                            <div className="timer">{this.props.when}</div>
+                        </div>);
+                }
+            }); ReactDOM.render(
+                <div>
+                    <Countdown name="Spruha's birthday" when="27-05-2023:0001" />
+                    <Countdown name="Advanced Complex Analysis End Semester Exam" when="20-04-2023:1400" />
+                    <Countdown name="Computer Networks End Semester Exam" when="28-04-2023:1400" />
+                    <Countdown name="Project II Viva Report Submission" when="01-05-2023:1630" />
+                    <Countdown name="Farewell" when="06-05-2023:2230" />
+
+
+
+
+                </div>, document.getElementsByClassName('container')[0]);
+
+
+
+
+
+
+
+        </script>
+
+        <script>
+            window.onload = updateuntil;
+
+            function updateuntil() {
+                var collection = document.querySelectorAll('div.timer');
+                console.log(collection.length);
+                for (let i = 0; i < collection.length; i++) {
+                    collection[i].innerHTML = "Until " + collection[i].innerHTML;
+
+                }
+                setInterval(updateCounters, 1200);
+            }
+
+
+
+            function updateCounters() {
+
+                var collection = document.querySelectorAll('div.timer');
+
+                for (let i = 0; i < collection.length; i++) {
+                    var main = collection[i].parentElement;
+                    var timestrings = collection[i].innerHTML.substr(6).split(':');
+                    //console.log(timestrings);
+
+                    var count = main.children[1];
+                    if (count.innerHTML == "Event passed") {
+                        continue;
+                    }
+                    var ymd = timestrings[0].split('-').reverse().join('-');
+
+                    var hm = timestrings[1][0] + timestrings[1][1] + ':' + timestrings[1][2] + timestrings[1][3] + ':00';
+
+                    var until = new Date(ymd + "T" + hm + "+05:30").getTime();
+                    var today = Date.now();
+                    var seconds = Math.floor((until - today) / 1000);
+                    //console.log(seconds, main);
+                    if (seconds < 0) {
+                        count.innerHTML = "Event passed";
+                        continue;
+                    }
+                    // console.log(seconds);
+                    count.innerHTML = secondsToDhms(seconds);
+                }
+            }
+
+            function secondsToDhms(seconds) {
+                seconds = Number(seconds);
+                var d = Math.floor(seconds / (3600 * 24));
+                var h = Math.floor(seconds % (3600 * 24) / 3600);
+                var m = Math.floor(seconds % 3600 / 60);
+                var s = Math.floor(seconds % 60);
+
+                var dDisplay = d > 0 ? d + (d == 1 ? "d " : "d ") : "";
+                var hDisplay = h > 0 ? h + (h == 1 ? "h " : "h ") : "";
+                var mDisplay = m > 0 ? m + (m == 1 ? "m " : "m ") : "";
+                var sDisplay = s > 0 ? s + (s == 1 ? "s " : "s ") : "";
+                return dDisplay + hDisplay + mDisplay + sDisplay;
+            }
+
+
+            function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+        </script>
+
+    </body>
 
 </html>
