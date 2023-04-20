@@ -21,7 +21,8 @@
                 text-align: center;
                 font-size: 75px;
                 font-family: Dubai;
-                margin-bottom: -10px;
+                margin-bottom: -30px;
+                margin-top: -25px;
             }
 
             .timer {
@@ -69,6 +70,11 @@
                 margin-top: 5px;
                 margin-right: 8px;
             }
+
+            hr.separator {
+                background-color: green;
+                border-top: 1px dashed linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+            }
         </style>
     </head>
 
@@ -98,6 +104,7 @@
                             <div className="task-name">{this.props.name}</div>
                             <div className="counter"></div>
                             <div className="timer">{this.props.when}</div>
+                            <hr className="separator" />
                         </div>);
                 }
             }); ReactDOM.render(
