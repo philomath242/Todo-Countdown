@@ -75,6 +75,17 @@
                 background-color: green;
                 border-top: 1px dashed linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
             }
+
+            i.fa-copyright {
+                margin: 3px;
+            }
+
+            @media only screen and (max-width: 600px) {
+                .task-name {
+                    margin-bottom: 5px;
+                    margin-top: 27px;
+                }
+            }
         </style>
     </head>
 
@@ -110,7 +121,6 @@
             }); ReactDOM.render(
                 <div>
                     <Countdown name="Spruha's birthday" when="27-05-2023:0001" />
-                    <Countdown name="Advanced Complex Analysis End Semester Exam" when="20-04-2023:1400" />
                     <Countdown name="Computer Networks End Semester Exam" when="28-04-2023:1400" />
                     <Countdown name="Project II Viva Report Submission" when="01-05-2023:1630" />
                     <Countdown name="Farewell" when="06-05-2023:2230" />
