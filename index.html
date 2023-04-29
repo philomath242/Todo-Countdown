@@ -25,6 +25,10 @@
                 margin: -20px auto -20px;
             }
 
+            .task-container {
+                opacity: 3;
+            }
+
             .timer {
                 font-size: 20px;
                 color: #e5efc1;
@@ -113,7 +117,7 @@
             var Countdown = React.createClass({
                 render: function () {
                     return (
-                        <div>
+                        <div className="task-container">
                             <div className="task-name">{this.props.name}</div>
                             <div className="counter"></div>
                             <div className="timer">{this.props.when}</div>
@@ -173,6 +177,9 @@
                     // console.log(seconds);
                     count.innerHTML = secondsToDhms(seconds);
                 }
+
+
+
             }
 
             function secondsToDhms(seconds) {
@@ -193,6 +200,36 @@
             function sleep(ms) {
                 return new Promise(resolve => setTimeout(resolve, ms));
             }
+
+
+            function clearEvents() {
+                var collection = document.querySelectorAll('div.counter');
+
+                for (let i = 0; i < collection.length; i++) {
+                    if (collection[i].innerHTML == "Event passed") {
+                        var par = collection[i].parentElement;
+                        par.style.transition = "2s";
+                        par.style.opacity = 0;
+
+                    }
+                }
+
+
+            }
+
+            function deleteFaded() {
+                var collection = document.querySelectorAll('div.counter');
+                for (let i = 0; i < collection.length; i++) {
+                    var prop = collection[i].parentElement.style.transition;
+                    if (prop) {
+                        collection[i].parentElement.style.display = "none";
+                    }
+                }
+            }
+
+
+            setTimeout(clearEvents, 2000);
+            setTimeout(deleteFaded, 4000);
         </script>
 
     </body>
